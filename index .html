@@ -1,0 +1,732 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Overthinking Test | SukoonMaa&lt;/title&gt;
+&lt;link
+href=&quot;https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;
+1,400&amp;family=Crimson+Pro:wght@300;400;500&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+:root {
+--plum: #110820;
+--gold: #c4a87d;
+--brown: #6b4423;
+--cream: #e8d5b5;
+--gold-light: #d4bc96;
+--plum-mid: #1e1030;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background-color: var(--plum);
+color: var(--cream);
+font-family: &#39;Crimson Pro&#39;, serif;
+min-height: 100vh;
+overflow-x: hidden;
+
+}
+
+/* Floral background pattern */
+body::before {
+content: &#39;&#39;;
+position: fixed;
+inset: 0;
+background-image:
+radial-gradient(ellipse at 20% 20%, rgba(196,168,125,0.06) 0%, transparent 50%),
+radial-gradient(ellipse at 80% 80%, rgba(107,68,35,0.08) 0%, transparent 50%);
+pointer-events: none;
+z-index: 0;
+}
+
+.floral-decoration {
+position: fixed;
+font-size: 120px;
+opacity: 0.04;
+pointer-events: none;
+z-index: 0;
+color: var(--gold);
+}
+.fl-1 { top: -20px; left: -20px; }
+.fl-2 { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
+.container {
+max-width: 720px;
+
+margin: 0 auto;
+padding: 40px 20px 80px;
+position: relative;
+z-index: 1;
+}
+
+/* Header */
+.header {
+text-align: center;
+margin-bottom: 48px;
+animation: fadeDown 0.8s ease both;
+}
+
+.brand {
+font-family: &#39;Crimson Pro&#39;, serif;
+font-weight: 300;
+font-size: 13px;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 16px;
+}
+
+.title {
+font-family: &#39;Playfair Display&#39;, serif;
+font-size: clamp(32px, 6vw, 52px);
+font-weight: 400;
+
+color: var(--cream);
+line-height: 1.15;
+margin-bottom: 12px;
+}
+
+.title em {
+font-style: italic;
+color: var(--gold);
+}
+
+.subtitle {
+font-size: 16px;
+color: rgba(232,213,181,0.65);
+font-weight: 300;
+line-height: 1.6;
+max-width: 480px;
+margin: 0 auto;
+}
+
+.divider {
+width: 60px;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(--gold), transparent);
+margin: 20px auto;
+}
+
+/* Intro card */
+
+.intro-card {
+background: rgba(196,168,125,0.07);
+border: 1px solid rgba(196,168,125,0.2);
+border-radius: 12px;
+padding: 24px 28px;
+margin-bottom: 36px;
+animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.intro-card p {
+font-size: 15px;
+line-height: 1.75;
+color: rgba(232,213,181,0.8);
+}
+
+.intro-card strong {
+color: var(--gold);
+}
+
+/* Scale guide */
+.scale-guide {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+margin-top: 16px;
+justify-content: center;
+}
+
+.scale-item {
+background: rgba(196,168,125,0.1);
+border: 1px solid rgba(196,168,125,0.15);
+border-radius: 20px;
+padding: 4px 12px;
+font-size: 13px;
+color: var(--gold-light);
+}
+
+/* Questions */
+.questions-section {
+animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.question-card {
+background: rgba(30,16,48,0.6);
+border: 1px solid rgba(196,168,125,0.12);
+border-radius: 14px;
+padding: 24px;
+margin-bottom: 20px;
+transition: border-color 0.3s, background 0.3s;
+}
+
+.question-card:hover {
+border-color: rgba(196,168,125,0.25);
+background: rgba(30,16,48,0.8);
+
+}
+
+.question-card.answered {
+border-color: rgba(196,168,125,0.35);
+background: rgba(196,168,125,0.06);
+}
+
+.q-number {
+font-size: 11px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--gold);
+opacity: 0.7;
+margin-bottom: 10px;
+}
+
+.q-text {
+font-family: &#39;Playfair Display&#39;, serif;
+font-size: 17px;
+color: var(--cream);
+line-height: 1.55;
+margin-bottom: 20px;
+}
+
+.options {
+display: flex;
+gap: 8px;
+
+flex-wrap: wrap;
+}
+
+.option-btn {
+flex: 1;
+min-width: 52px;
+padding: 10px 6px;
+background: rgba(196,168,125,0.08);
+border: 1px solid rgba(196,168,125,0.2);
+border-radius: 8px;
+color: var(--cream);
+font-family: &#39;Crimson Pro&#39;, serif;
+font-size: 15px;
+cursor: pointer;
+transition: all 0.2s;
+text-align: center;
+}
+
+.option-btn:hover {
+background: rgba(196,168,125,0.18);
+border-color: var(--gold);
+}
+
+.option-btn.selected {
+background: var(--gold);
+border-color: var(--gold);
+color: var(--plum);
+
+font-weight: 500;
+}
+
+.option-label {
+display: block;
+font-size: 10px;
+opacity: 0.7;
+margin-top: 3px;
+letter-spacing: 0.5px;
+}
+
+/* Progress */
+.progress-bar-wrap {
+margin-bottom: 32px;
+animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.progress-info {
+display: flex;
+justify-content: space-between;
+font-size: 13px;
+color: rgba(196,168,125,0.6);
+margin-bottom: 8px;
+}
+
+.progress-bar {
+height: 3px;
+
+background: rgba(196,168,125,0.15);
+border-radius: 2px;
+overflow: hidden;
+}
+
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, var(--brown), var(--gold));
+border-radius: 2px;
+transition: width 0.4s ease;
+}
+
+/* Submit button */
+.submit-wrap {
+text-align: center;
+margin-top: 36px;
+}
+
+.submit-btn {
+background: linear-gradient(135deg, var(--brown), var(--gold));
+color: var(--plum);
+border: none;
+padding: 16px 48px;
+font-family: &#39;Playfair Display&#39;, serif;
+font-size: 17px;
+border-radius: 50px;
+cursor: pointer;
+
+transition: all 0.3s;
+letter-spacing: 1px;
+box-shadow: 0 4px 24px rgba(196,168,125,0.2);
+}
+
+.submit-btn:hover:not(:disabled) {
+transform: translateY(-2px);
+box-shadow: 0 8px 32px rgba(196,168,125,0.35);
+}
+
+.submit-btn:disabled {
+opacity: 0.4;
+cursor: not-allowed;
+}
+
+.answered-count {
+font-size: 13px;
+color: rgba(196,168,125,0.5);
+margin-top: 12px;
+}
+
+/* Results */
+.result-section {
+display: none;
+animation: fadeUp 0.8s ease both;
+}
+
+.result-section.show { display: block; }
+
+.result-card {
+background: rgba(30,16,48,0.8);
+border: 1px solid rgba(196,168,125,0.3);
+border-radius: 16px;
+padding: 40px 32px;
+text-align: center;
+margin-bottom: 24px;
+}
+
+.result-label {
+font-size: 12px;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 12px;
+}
+
+.result-score {
+font-family: &#39;Playfair Display&#39;, serif;
+font-size: 72px;
+font-weight: 600;
+color: var(--gold);
+line-height: 1;
+margin-bottom: 8px;
+}
+
+.result-max {
+font-size: 14px;
+color: rgba(196,168,125,0.5);
+margin-bottom: 20px;
+}
+
+.result-level {
+font-family: &#39;Playfair Display&#39;, serif;
+font-size: 28px;
+font-style: italic;
+color: var(--cream);
+margin-bottom: 16px;
+}
+
+.result-desc {
+font-size: 16px;
+line-height: 1.7;
+color: rgba(232,213,181,0.75);
+max-width: 480px;
+margin: 0 auto 24px;
+}
+
+.score-bar-wrap {
+margin: 28px 0;
+}
+
+.score-bar {
+height: 8px;
+background: rgba(196,168,125,0.15);
+border-radius: 4px;
+overflow: hidden;
+margin-bottom: 8px;
+}
+
+.score-fill {
+height: 100%;
+border-radius: 4px;
+transition: width 1.2s ease;
+}
+
+.score-markers {
+display: flex;
+justify-content: space-between;
+font-size: 11px;
+color: rgba(196,168,125,0.4);
+}
+
+.tips-card {
+background: rgba(196,168,125,0.07);
+border: 1px solid rgba(196,168,125,0.15);
+border-radius: 12px;
+padding: 24px 28px;
+text-align: left;
+
+}
+
+.tips-title {
+font-family: &#39;Playfair Display&#39;, serif;
+font-size: 18px;
+color: var(--gold);
+margin-bottom: 16px;
+}
+
+.tips-list {
+list-style: none;
+}
+
+.tips-list li {
+padding: 8px 0;
+font-size: 15px;
+color: rgba(232,213,181,0.8);
+border-bottom: 1px solid rgba(196,168,125,0.08);
+line-height: 1.6;
+padding-left: 20px;
+position: relative;
+}
+
+.tips-list li::before {
+content: &#39;✦&#39;;
+position: absolute;
+left: 0;
+
+color: var(--gold);
+font-size: 10px;
+top: 11px;
+}
+
+.tips-list li:last-child { border-bottom: none; }
+
+.retake-btn {
+background: transparent;
+border: 1px solid rgba(196,168,125,0.4);
+color: var(--gold);
+padding: 12px 32px;
+font-family: &#39;Crimson Pro&#39;, serif;
+font-size: 16px;
+border-radius: 50px;
+cursor: pointer;
+margin-top: 24px;
+transition: all 0.3s;
+}
+
+.retake-btn:hover {
+background: rgba(196,168,125,0.1);
+}
+
+.disclaimer {
+font-size: 12px;
+color: rgba(196,168,125,0.35);
+
+text-align: center;
+margin-top: 32px;
+line-height: 1.6;
+}
+
+@keyframes fadeDown {
+from { opacity: 0; transform: translateY(-20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class=&quot;floral-decoration fl-1&quot;&gt;❀&lt;/div&gt;
+&lt;div class=&quot;floral-decoration fl-2&quot;&gt;❀&lt;/div&gt;
+
+&lt;div class=&quot;container&quot;&gt;
+
+&lt;!-- Header --&gt;
+&lt;div class=&quot;header&quot;&gt;
+&lt;div class=&quot;brand&quot;&gt;SukoonMaa · Wellness Assessment&lt;/div&gt;
+&lt;h1 class=&quot;title&quot;&gt;Are You an&lt;br&gt;&lt;em&gt;Overthinker?&lt;/em&gt;&lt;/h1&gt;
+
+&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+&lt;p class=&quot;subtitle&quot;&gt;A validated psychological assessment to understand your worry
+patterns&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Quiz Section --&gt;
+&lt;div id=&quot;quizSection&quot;&gt;
+
+&lt;div class=&quot;intro-card&quot;&gt;
+&lt;p&gt;This test is based on the &lt;strong&gt;Penn State Worry Questionnaire
+(PSWQ)&lt;/strong&gt; — a widely validated clinical tool used by psychologists worldwide to
+measure worry and overthinking tendencies.&lt;br&gt;&lt;br&gt;
+Rate each statement honestly on a scale of &lt;strong&gt;1 to 5&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&quot;scale-guide&quot;&gt;
+&lt;span class=&quot;scale-item&quot;&gt;1 — Not at all typical&lt;/span&gt;
+&lt;span class=&quot;scale-item&quot;&gt;2 — Rarely typical&lt;/span&gt;
+&lt;span class=&quot;scale-item&quot;&gt;3 — Somewhat typical&lt;/span&gt;
+&lt;span class=&quot;scale-item&quot;&gt;4 — Often typical&lt;/span&gt;
+&lt;span class=&quot;scale-item&quot;&gt;5 — Very typical of me&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;progress-bar-wrap&quot;&gt;
+&lt;div class=&quot;progress-info&quot;&gt;
+&lt;span&gt;Your Progress&lt;/span&gt;
+&lt;span id=&quot;progressText&quot;&gt;0 of 16 answered&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;progress-bar&quot;&gt;
+
+&lt;div class=&quot;progress-fill&quot; id=&quot;progressFill&quot; style=&quot;width:0%&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;questions-section&quot; id=&quot;questionsContainer&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;submit-wrap&quot;&gt;
+&lt;button class=&quot;submit-btn&quot; id=&quot;submitBtn&quot; disabled onclick=&quot;showResults()&quot;&gt;
+Reveal My Results
+&lt;/button&gt;
+&lt;div class=&quot;answered-count&quot; id=&quot;answeredCount&quot;&gt;Please answer all 16
+questions&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;!-- Results Section --&gt;
+&lt;div class=&quot;result-section&quot; id=&quot;resultSection&quot;&gt;
+
+&lt;div class=&quot;result-card&quot;&gt;
+&lt;div class=&quot;result-label&quot;&gt;Your PSWQ Score&lt;/div&gt;
+&lt;div class=&quot;result-score&quot; id=&quot;scoreDisplay&quot;&gt;—&lt;/div&gt;
+&lt;div class=&quot;result-max&quot;&gt;out of 80&lt;/div&gt;
+&lt;div class=&quot;result-level&quot; id=&quot;levelDisplay&quot;&gt;—&lt;/div&gt;
+&lt;p class=&quot;result-desc&quot; id=&quot;descDisplay&quot;&gt;—&lt;/p&gt;
+
+&lt;div class=&quot;score-bar-wrap&quot;&gt;
+
+&lt;div class=&quot;score-bar&quot;&gt;
+&lt;div class=&quot;score-fill&quot; id=&quot;scoreFill&quot; style=&quot;width:0%&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;score-markers&quot;&gt;
+&lt;span&gt;16 (Minimal)&lt;/span&gt;
+&lt;span&gt;45 (Moderate)&lt;/span&gt;
+&lt;span&gt;80 (High)&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;tips-card&quot; id=&quot;tipsCard&quot;&gt;&lt;/div&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;button class=&quot;retake-btn&quot; onclick=&quot;retake()&quot;&gt;Take the Test Again&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;p class=&quot;disclaimer&quot;&gt;This assessment is for self-awareness only and does not
+constitute a clinical diagnosis. If worry significantly impacts your daily life, please consult
+a mental health professional. — SukoonMaa&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+const questions = [
+
+{ text: &quot;If I do not have enough time to do everything, I do not worry about it.&quot;, reverse:
+true },
+{ text: &quot;My worries overwhelm me.&quot;, reverse: false },
+{ text: &quot;I do not tend to worry about things.&quot;, reverse: true },
+{ text: &quot;Many situations make me worry.&quot;, reverse: false },
+{ text: &quot;I know I should not worry about things, but I just cannot help it.&quot;, reverse: false
+},
+{ text: &quot;When I am under pressure I worry a lot.&quot;, reverse: false },
+{ text: &quot;I am always worrying about something.&quot;, reverse: false },
+{ text: &quot;I find it easy to dismiss worrisome thoughts.&quot;, reverse: true },
+{ text: &quot;As soon as I finish one task, I start to worry about everything else I have to do.&quot;,
+reverse: false },
+{ text: &quot;I never worry about anything.&quot;, reverse: true },
+{ text: &quot;When there is nothing more I can do about a concern, I do not worry about it
+anymore.&quot;, reverse: true },
+{ text: &quot;I have been a worrier all my life.&quot;, reverse: false },
+{ text: &quot;I notice that I have been worrying about things.&quot;, reverse: false },
+{ text: &quot;Once I start worrying, I cannot stop.&quot;, reverse: false },
+{ text: &quot;I worry all the time.&quot;, reverse: false },
+{ text: &quot;I worry about projects until they are all done.&quot;, reverse: false }
+];
+
+const answers = new Array(16).fill(null);
+
+function buildQuestions() {
+const container = document.getElementById(&#39;questionsContainer&#39;);
+questions.forEach((q, i) =&gt; {
+const card = document.createElement(&#39;div&#39;);
+
+card.className = &#39;question-card&#39;;
+card.id = `card-${i}`;
+
+const labels = [&#39;Not at all&#39;, &#39;Rarely&#39;, &#39;Somewhat&#39;, &#39;Often&#39;, &#39;Very typical&#39;];
+
+card.innerHTML = `
+&lt;div class=&quot;q-number&quot;&gt;Question ${i + 1} of 16&lt;/div&gt;
+&lt;div class=&quot;q-text&quot;&gt;${q.text}&lt;/div&gt;
+&lt;div class=&quot;options&quot; id=&quot;options-${i}&quot;&gt;
+${[1,2,3,4,5].map(v =&gt; `
+&lt;button class=&quot;option-btn&quot; onclick=&quot;selectAnswer(${i}, ${v})&quot;&gt;
+${v}
+&lt;span class=&quot;option-label&quot;&gt;${labels[v-1]}&lt;/span&gt;
+&lt;/button&gt;
+`).join(&#39;&#39;)}
+&lt;/div&gt;
+`;
+container.appendChild(card);
+});
+}
+
+function selectAnswer(qIndex, value) {
+answers[qIndex] = value;
+
+const opts = document.querySelectorAll(`#options-${qIndex} .option-btn`);
+opts.forEach((btn, i) =&gt; {
+btn.classList.toggle(&#39;selected&#39;, i + 1 === value);
+
+});
+
+document.getElementById(`card-${qIndex}`).classList.add(&#39;answered&#39;);
+
+const answered = answers.filter(a =&gt; a !== null).length;
+document.getElementById(&#39;progressText&#39;).textContent = `${answered} of 16
+answered`;
+document.getElementById(&#39;progressFill&#39;).style.width = `${(answered/16)*100}%`;
+
+if (answered === 16) {
+document.getElementById(&#39;submitBtn&#39;).disabled = false;
+document.getElementById(&#39;answeredCount&#39;).textContent = &#39;All done! Reveal your
+results ✦&#39;;
+} else {
+document.getElementById(&#39;answeredCount&#39;).textContent = `${16 - answered}
+questions remaining`;
+}
+}
+
+function calculateScore() {
+let total = 0;
+answers.forEach((val, i) =&gt; {
+if (questions[i].reverse) {
+total += (6 - val);
+} else {
+total += val;
+}
+});
+
+return total;
+}
+
+function showResults() {
+const score = calculateScore();
+document.getElementById(&#39;quizSection&#39;).style.display = &#39;none&#39;;
+const rs = document.getElementById(&#39;resultSection&#39;);
+rs.classList.add(&#39;show&#39;);
+
+document.getElementById(&#39;scoreDisplay&#39;).textContent = score;
+
+let level, desc, color, tips;
+
+if (score &lt;= 34) {
+level = &quot;Minimal Overthinking&quot;;
+color = &quot;#7dbe8a&quot;;
+desc = &quot;Your worry levels are low and well-managed. You tend to let go of concerns
+relatively easily and don&#39;t get trapped in repetitive thought cycles. This is a healthy
+pattern.&quot;;
+tips = [
+&quot;Continue practicing mindfulness to maintain this balance.&quot;,
+&quot;Your ability to let go is a strength — nurture it.&quot;,
+&quot;Share your coping strategies with those around you.&quot;,
+&quot;Occasional worry is normal; yours appears well-regulated.&quot;
+];
+} else if (score &lt;= 54) {
+level = &quot;Moderate Overthinking&quot;;
+color = &quot;#c4a87d&quot;;
+
+desc = &quot;You experience a moderate level of worry that sometimes feels difficult to
+control. Certain situations or pressures trigger repetitive thinking patterns, though you
+manage them reasonably well overall.&quot;;
+tips = [
+&quot;Try the &#39;worry window&#39; technique — set 15 mins/day for worrying, then redirect.&quot;,
+&quot;Challenge unhelpful thoughts: ask &#39;Is this thought helpful or just familiar?&#39;&quot;,
+&quot;Grounding exercises (5-4-3-2-1 senses) can interrupt worry spirals.&quot;,
+&quot;Journaling worries can help externalize and reduce their intensity.&quot;,
+&quot;Physical activity significantly reduces cortisol and worry patterns.&quot;
+];
+} else {
+level = &quot;High Overthinking&quot;;
+color = &quot;#c47d7d&quot;;
+desc = &quot;Worry appears to be a significant and persistent part of your daily experience.
+You may find it hard to switch off your thoughts, and anxiety can interfere with your
+sleep, focus, or relationships.&quot;;
+tips = [
+&quot;Consider speaking with a psychologist or counsellor — this is treatable.&quot;,
+&quot;CBT (Cognitive Behavioural Therapy) is highly effective for chronic worry.&quot;,
+&quot;Practice postponing worry: &#39;I&#39;ll think about this at 6pm, not now.&#39;&quot;,
+&quot;Identify your triggers and notice patterns in when worry peaks.&quot;,
+&quot;Mindfulness-based stress reduction (MBSR) can rewire worry habits.&quot;,
+&quot;Be gentle with yourself — overthinking is a learned pattern, not a flaw.&quot;
+];
+}
+
+document.getElementById(&#39;levelDisplay&#39;).textContent = level;
+document.getElementById(&#39;descDisplay&#39;).textContent = desc;
+
+const pct = ((score - 16) / 64) * 100;
+const fill = document.getElementById(&#39;scoreFill&#39;);
+fill.style.background = `linear-gradient(90deg, #6b4423, ${color})`;
+setTimeout(() =&gt; { fill.style.width = `${pct}%`; }, 100);
+
+document.getElementById(&#39;tipsCard&#39;).innerHTML = `
+&lt;div class=&quot;tips-title&quot;&gt;Your Personalised Guidance&lt;/div&gt;
+&lt;ul class=&quot;tips-list&quot;&gt;
+${tips.map(t =&gt; `&lt;li&gt;${t}&lt;/li&gt;`).join(&#39;&#39;)}
+&lt;/ul&gt;
+`;
+}
+
+function retake() {
+answers.fill(null);
+document.getElementById(&#39;resultSection&#39;).classList.remove(&#39;show&#39;);
+document.getElementById(&#39;quizSection&#39;).style.display = &#39;block&#39;;
+document.getElementById(&#39;questionsContainer&#39;).innerHTML = &#39;&#39;;
+document.getElementById(&#39;progressFill&#39;).style.width = &#39;0%&#39;;
+document.getElementById(&#39;progressText&#39;).textContent = &#39;0 of 16 answered&#39;;
+document.getElementById(&#39;submitBtn&#39;).disabled = true;
+document.getElementById(&#39;answeredCount&#39;).textContent = &#39;Please answer all 16
+questions&#39;;
+buildQuestions();
+window.scrollTo(0, 0);
+}
+
+buildQuestions();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
